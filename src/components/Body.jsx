@@ -69,9 +69,12 @@ function Body() {
     setData(dataPile);
   }, []);
 
-  const handleInputChange = (value) => {
+  const handleInputChange = (value, id) => {
     setInputData(value); // Update the state with the input data from the child component
-    // console.log(value, "parent");
+    let newData = data.find((i) => i.heading === id);
+    newData.answer = inputData;
+    setData([...data, newData]);
+    console.log(data);
   };
   return (
     <>
@@ -80,7 +83,7 @@ function Body() {
           key={index}
           heading={question.heading}
           question={question.question}
-          answer={handleInputChange}
+          answer={(value, id) => handleInputChange(value, id)}
         />
       ))}
     </>

@@ -4,11 +4,10 @@ import { useState } from "react";
 function Card({ heading, question, answer }) {
   const [inputValue, setInputValue] = useState("");
 
-  const handleChange = (e) => {
+  const handleChange = (e, id) => {
     const value = e.target.value;
-    // console.log(e.target.value);
     setInputValue(value);
-    answer(value);
+    answer(value, id);
   };
 
   return (
@@ -28,7 +27,7 @@ function Card({ heading, question, answer }) {
               className="form-control"
               placeholder="Enter you answer here"
               value={inputValue}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e, heading)}
               style={{ width: "100%" }}
             />
           </div>
